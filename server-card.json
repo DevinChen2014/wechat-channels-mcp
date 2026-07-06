@@ -1,0 +1,90 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.52choujiang/wechat-channels-insights",
+  "title": "SocialDataX 微信视频号 WeChat Channels MCP",
+  "description": "微信视频号 / WeChat Channels MCP for hot search, video search, detail lookup, comments/replies, user profiles, user posted videos, and speech-to-text transcript.",
+  "version": "0.1.1",
+  "website": "https://socialdatax.com",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.socialdatax.com/wechat/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer API key from SocialDataX / 社媒数据助手",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "wechat_get_hot_search_list",
+      "description": "Get the current WeChat Channels / 微信视频号 hot search list."
+    },
+    {
+      "name": "wechat_search_videos",
+      "description": "Search WeChat Channels videos by keyword with optional page_token continuation and filters; do not pass page."
+    },
+    {
+      "name": "wechat_get_video_detail_by_encrypted_object_id",
+      "description": "Fetch structured video details when the caller already has an encrypted_object_id."
+    },
+    {
+      "name": "wechat_get_video_detail_by_url",
+      "description": "Resolve a WeChat Channels video link or share text into structured video details."
+    },
+    {
+      "name": "wechat_submit_video_speech_text_by_video_url",
+      "description": "Submit a WeChat Channels video speech-to-text transcript task from a video link or share text. 提交完成后最多短等 15 秒；if not finished, returns a job handle."
+    },
+    {
+      "name": "wechat_submit_video_speech_text_by_encrypted_object_id",
+      "description": "Submit a WeChat Channels video speech-to-text transcript task from an encrypted_object_id. 提交完成后最多短等 15 秒；if not finished, returns a job handle."
+    },
+    {
+      "name": "wechat_get_video_speech_text_job",
+      "description": "Check a WeChat Channels speech-to-text transcript job by job_id without starting a new task. This v1 surface returns transcript only, not summary."
+    },
+    {
+      "name": "wechat_get_video_comments_by_object_id",
+      "description": "Fetch paginated first-level comments when the caller already has the video object identifiers."
+    },
+    {
+      "name": "wechat_get_video_comments_by_url",
+      "description": "Fetch paginated first-level comments directly from a WeChat Channels video link or share text."
+    },
+    {
+      "name": "wechat_get_video_comment_replies_by_comment_id",
+      "description": "Fetch paginated replies under a first-level comment by video object identifiers and comment_id."
+    },
+    {
+      "name": "wechat_get_user_info_by_user_id",
+      "description": "Fetch user profile data when the caller already has a user_id."
+    },
+    {
+      "name": "wechat_get_user_posted_videos_by_user_id",
+      "description": "Fetch a paginated list of videos published by a user when the caller already has a user_id."
+    },
+    {
+      "name": "wechat_get_user_posted_videos_by_url",
+      "description": "Fetch a paginated list of videos published by a user from a profile or video link."
+    }
+  ],
+  "tags": [
+    "wechat",
+    "wechat-channels",
+    "wechat-channels-mcp",
+    "video",
+    "social-media",
+    "mcp",
+    "mcp-server",
+    "socialdatax",
+    "social-insights",
+    "marketing-research",
+    "comment-analysis",
+    "creator-analytics"
+  ]
+}

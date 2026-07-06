@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "socialdatax-wechat": {
+      "url": "https://mcp.socialdatax.com/wechat/mcp",
+      "headers": {
+        "Authorization": "Bearer ${env:SOCIALDATAX_API_KEY}"
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+[mcp_servers.socialdatax-wechat]
+enabled = true
+url = "https://mcp.socialdatax.com/wechat/mcp"
+bearer_token_env_var = "SOCIALDATAX_API_KEY"
