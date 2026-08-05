@@ -7,9 +7,9 @@ Use this checklist before syncing this listing to the public WeChat Channels MCP
 - Primary repository name: `wechat-channels-mcp`
 - Fallback repository name if unavailable: `wechat-channels-socialdatax-mcp`
 - Repository URL after creation: `https://github.com/DevinChen2014/wechat-channels-mcp`
-- Repository description: `微信视频号 MCP / WeChat Channels MCP by SocialDataX for hot search, video search, details, comments, comment replies, user profiles, user videos, and transcript.`
-- Suggested repository topics: `mcp`, `mcp-server`, `wechat`, `wechat-channels`, `wechat-channels-mcp`, `socialdatax`, `social-insights`, `marketing-research`, `comment-analysis`, `creator-analytics`
-- Root README title: `微信视频号 MCP | WeChat Channels MCP`
+- Repository description: `微信视频号 MCP / WeChat Channels MCP by SocialDataX for hot search, video search, details, comments, comment replies, user profiles, user videos, and transcript, plus WeChat Official Account article details.`
+- Suggested repository topics: `mcp`, `mcp-server`, `wechat`, `wechat-channels`, `wechat-channels-mcp`, `wechat-official-account`, `socialdatax`, `social-insights`, `marketing-research`, `comment-analysis`, `creator-analytics`
+- Root README title: `微信视频号与公众号 MCP | WeChat Channels and Official Account MCP`
 - Product: `SocialDataX` / `社媒数据助手`
 - Website: `https://socialdatax.com`
 - Registry name: `com.52choujiang/wechat-channels-insights`
@@ -22,7 +22,7 @@ Use this checklist before syncing this listing to the public WeChat Channels MCP
 
 ## Safety Checks
 
-- No real API keys are present.
+- No real API Key values are present.
 - No private backend implementation is included.
 - No production configuration is included.
 - No internal samples are included.
@@ -48,8 +48,10 @@ Use this checklist before syncing this listing to the public WeChat Channels MCP
 
 - Hosted streamable HTTP clients can connect directly to `https://mcp.socialdatax.com/wechat/mcp` with `Authorization: Bearer <SOCIALDATAX_API_KEY>`.
 - With a valid key, hosted MCP `initialize` succeeds.
-- With a valid key, hosted MCP `tools/list` returns the current 13 public tools.
+- With a valid key, hosted MCP `tools/list` returns the current 15 public tools.
 - `wechat_get_hot_search_list` is present in `tools/list`; if it is missing, deploy the latest service before publishing.
+- `wechat_get_user_info_by_url` is present in `tools/list`; if it is missing, deploy the latest service before publishing.
+- `wechat_get_mp_article_detail_by_url` is present in `tools/list`; if it is missing, deploy the latest service before publishing.
 - `wechat_submit_video_speech_text_by_video_url`, `wechat_submit_video_speech_text_by_encrypted_object_id`, and `wechat_get_video_speech_text_job` are present in `tools/list`; if any are missing, deploy the latest service before publishing.
 - `examples/codex_config.toml` uses remote HTTP URL and `bearer_token_env_var`, not `mcp-remote`.
 - `examples/cursor_mcp.json` uses remote HTTP URL and `headers` with `${env:SOCIALDATAX_API_KEY}`, not `mcp-remote`.
@@ -76,6 +78,8 @@ Use this checklist before syncing this listing to the public WeChat Channels MCP
 - `WeChat Channels data MCP`
 - `WeChat Channels video research MCP`
 - `WeChat Channels comments MCP`
+- `WeChat Official Account MCP`
+- `WeChat Official Account article MCP`
 - `微信视频号`
 - `微信视频号 MCP`
 - `视频号`
@@ -84,5 +88,7 @@ Use this checklist before syncing this listing to the public WeChat Channels MCP
 - `视频号 热榜 MCP`
 - `视频号 评论 MCP`
 - `视频号 用户 MCP`
+- `微信公众号文章 MCP`
+- `公众号文章详情 MCP`
 - `SocialDataX`
 - `社媒数据助手`

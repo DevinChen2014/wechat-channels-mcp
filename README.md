@@ -1,8 +1,8 @@
-# 微信视频号 MCP | WeChat Channels MCP
+# 微信视频号与公众号 MCP | WeChat Channels and Official Account MCP
 
-This public repository provides public connection docs and MCP metadata for a hosted 微信视频号 MCP / WeChat Channels MCP service by SocialDataX.
+This public repository provides public connection docs and MCP metadata for a hosted 微信视频号与公众号 MCP / WeChat Channels and Official Account MCP service by SocialDataX.
 
-If you are looking for a WeChat Channels MCP or 微信视频号 MCP for social media research workflows, this repository includes:
+If you are looking for a WeChat Channels MCP, 微信视频号 MCP, or 微信公众号文章 MCP for social media research workflows, this repository includes:
 
 - public MCP metadata and client configuration examples
 - the hosted `streamable-http` endpoint for clients that support remote MCP
@@ -20,11 +20,14 @@ Common search phrases for this MCP service:
 - `视频号 热榜 MCP`
 - `视频号 评论 MCP`
 - `视频号 用户 MCP`
+- `微信公众号文章 MCP`
+- `公众号文章详情 MCP`
 - `WeChat Channels MCP`
 - `WeChat Channels data MCP`
+- `WeChat Official Account MCP`
 - `WeChat Channels video research MCP`
 - `WeChat Channels comments MCP`
-- `Wechat MCP`
+- `WeChat MCP`
 - `微信 MCP`
 
 ## Service
@@ -36,7 +39,7 @@ Common search phrases for this MCP service:
 - Website: <https://socialdatax.com>
 - Registry name: `com.52choujiang/wechat-channels-insights`
 - Future registry name: `com.socialdatax/wechat-channels-insights`
-- Current public capability version: `0.1.1`
+- Current public capability version: `0.1.2`
 
 ## Platform MCP
 
@@ -49,32 +52,36 @@ This MCP service is designed for social media content intelligence workflows. It
 Supported workflows include:
 
 - Read the WeChat Channels / 微信视频号 hot search list.
-- Search WeChat Channels videos by keyword with optional `page_token` continuation and filters; do not pass `page`.
+- Fetch WeChat Official Account / 微信公众号 article details and body text from an article link or share text.
+- Search WeChat Channels videos by keyword with optional paging and filters.
 - Resolve a WeChat Channels video link or share text into structured video details.
 - Read video details when the caller already has an `encrypted_object_id`.
 - Fetch paginated first-level comments for comment analysis.
 - Fetch paginated replies under a first-level comment.
-- Read user profile data when the caller already has a `user_id`.
-- Fetch user posted video lists from a profile/video link or `user_id`.
-- Submit a video speech-to-text transcript task; submit tools 提交完成后最多短等 15 秒, and unfinished jobs can be polled by `job_id`.
+- Read user profile data when the caller already has a `v2_...@finder` user_id.
+- Resolve a video link or share text into its creator profile data.
+- Fetch user posted video lists from a video link/share text or a `v2_...@finder` user_id.
+- Submit a video speech-to-text transcript task; submit tools 提交完成后最多短等 240 秒, and unfinished jobs should continue polling the same `job_id` until terminal.
 
 ## Tools
 
 | Tool | Public purpose |
 | --- | --- |
 | `wechat_get_hot_search_list` | Get the current WeChat Channels / 微信视频号 hot search list. |
-| `wechat_search_videos` | Search WeChat Channels videos by keyword with optional `page_token` continuation and filters; do not pass `page`. |
+| `wechat_get_mp_article_detail_by_url` | Fetch WeChat Official Account / 微信公众号 article detail and body text from an article link or share text. |
+| `wechat_search_videos` | Search WeChat Channels videos by keyword with optional paging and filters. |
 | `wechat_get_video_detail_by_encrypted_object_id` | Fetch structured video details when the caller already has an `encrypted_object_id`. |
 | `wechat_get_video_detail_by_url` | Resolve a WeChat Channels video link or share text into structured video details. |
 | `wechat_get_video_comments_by_object_id` | Fetch paginated first-level comments when the caller already has the video object identifiers. |
 | `wechat_get_video_comments_by_url` | Fetch paginated first-level comments directly from a WeChat Channels video link or share text. |
 | `wechat_get_video_comment_replies_by_comment_id` | Fetch paginated replies under a first-level comment by video object identifiers and `comment_id`. |
-| `wechat_get_user_info_by_user_id` | Fetch user profile data when the caller already has a `user_id`. |
-| `wechat_get_user_posted_videos_by_user_id` | Fetch a paginated list of videos published by a user when the caller already has a `user_id`. |
-| `wechat_get_user_posted_videos_by_url` | Fetch a paginated list of videos published by a user from a profile or video link. |
-| `wechat_submit_video_speech_text_by_video_url` | Submit a video speech-to-text transcript task from a video link or share text. 提交完成后最多短等 15 秒. |
-| `wechat_submit_video_speech_text_by_encrypted_object_id` | Submit a video speech-to-text transcript task from an `encrypted_object_id`. 提交完成后最多短等 15 秒. |
-| `wechat_get_video_speech_text_job` | Check a video speech-to-text transcript job by `job_id` without creating a new task. This v1 surface returns transcript only, not summary. |
+| `wechat_get_user_info_by_user_id` | Fetch user profile data when the caller already has a `v2_...@finder` user_id. |
+| `wechat_get_user_info_by_url` | Resolve a WeChat Channels video link or share text into its creator profile data. |
+| `wechat_get_user_posted_videos_by_user_id` | Fetch a paginated list of videos published by a user when the caller already has a `v2_...@finder` user_id. |
+| `wechat_get_user_posted_videos_by_url` | Fetch a paginated list of videos published by a user from a video link or share text. |
+| `wechat_submit_video_speech_text_by_video_url` | Submit a video speech-to-text transcript task from a video link or share text. 提交完成后最多短等 240 秒；未完成时继续查询同一个 `job_id` 直到终态. |
+| `wechat_submit_video_speech_text_by_encrypted_object_id` | Submit a video speech-to-text transcript task from an `encrypted_object_id`. 提交完成后最多短等 240 秒；未完成时继续查询同一个 `job_id` 直到终态. |
+| `wechat_get_video_speech_text_job` | Check a video speech-to-text transcript job by `job_id` without creating a new task; each call waits up to 240 seconds. If unfinished, continue querying the same `job_id` until terminal. This v1 surface returns transcript plus content context, not summary. |
 
 ## Quick Start
 
@@ -141,7 +148,7 @@ Request or manage API access from the product website:
 
 <https://socialdatax.com>
 
-Use the key as a Bearer token in the `Authorization` request header. Do not commit real API keys to code, docs, issues, or screenshots.
+Use the key as a Bearer token in the `Authorization` request header. Do not commit real API Key values to code, docs, issues, or screenshots.
 
 ## Directory Metadata
 
