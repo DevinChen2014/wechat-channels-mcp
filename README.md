@@ -51,37 +51,39 @@ This MCP service is designed for social media content intelligence workflows. It
 
 Supported workflows include:
 
+- Query the current API Key account's SocialDataX points balance.
 - Read the WeChat Channels / 微信视频号 hot search list.
 - Fetch WeChat Official Account / 微信公众号 article details and body text from an article link or share text.
 - Search WeChat Channels videos by keyword with optional paging and filters.
-- Resolve a WeChat Channels video link or share text into structured video details.
+- Resolve a WeChat Channels video or image-post link or share text into structured work details.
 - Read video details when the caller already has an `encrypted_object_id`.
 - Fetch paginated first-level comments for comment analysis.
 - Fetch paginated replies under a first-level comment.
 - Read user profile data when the caller already has a `v2_...@finder` user_id.
-- Resolve a video link or share text into its creator profile data.
-- Fetch user posted video lists from a video link/share text or a `v2_...@finder` user_id.
+- Resolve a video or image-post link or share text into its creator profile data.
+- Fetch user posted video lists from a video or image-post link/share text or a `v2_...@finder` user_id.
 - Submit a video speech-to-text transcript task; submit tools 提交完成后最多短等 240 秒, and unfinished jobs should continue polling the same `job_id` until terminal.
 
 ## Tools
 
 | Tool | Public purpose |
 | --- | --- |
+| `socialdatax_get_points_balance` | Query the current API Key account's SocialDataX points balance. |
 | `wechat_get_hot_search_list` | Get the current WeChat Channels / 微信视频号 hot search list. |
 | `wechat_get_mp_article_detail_by_url` | Fetch WeChat Official Account / 微信公众号 article detail and body text from an article link or share text. |
-| `wechat_search_videos` | Search WeChat Channels videos by keyword with optional paging and filters. |
+| `wechat_search_videos` | Search WeChat Channels videos by search term. Use this tool when the user needs videos found by a search term; when a video or image-post link is available, use the detail tool; when a video link is available and comments are needed, use the comment tool; when a video link or `encrypted_object_id` is available and a transcript is needed, use the speech-to-text tool. Supports `page_token` continuation. |
 | `wechat_get_video_detail_by_encrypted_object_id` | Fetch structured video details when the caller already has an `encrypted_object_id`. |
-| `wechat_get_video_detail_by_url` | Resolve a WeChat Channels video link or share text into structured video details. |
-| `wechat_get_video_comments_by_object_id` | Fetch paginated first-level comments when the caller already has the video object identifiers. |
+| `wechat_get_video_detail_by_url` | Resolve a WeChat Channels video or image-post link or share text into structured work details. |
+| `wechat_get_video_comments_by_object_id` | Fetch paginated first-level comments when the caller already has the same video's `object_id` and `object_nonce_id`. |
 | `wechat_get_video_comments_by_url` | Fetch paginated first-level comments directly from a WeChat Channels video link or share text. |
-| `wechat_get_video_comment_replies_by_comment_id` | Fetch paginated replies under a first-level comment by video object identifiers and `comment_id`. |
+| `wechat_get_video_comment_replies_by_comment_id` | Fetch paginated replies under a first-level comment using the same video's `object_id` and `object_nonce_id` plus the first-level `comment_id`. |
 | `wechat_get_user_info_by_user_id` | Fetch user profile data when the caller already has a `v2_...@finder` user_id. |
-| `wechat_get_user_info_by_url` | Resolve a WeChat Channels video link or share text into its creator profile data. |
+| `wechat_get_user_info_by_url` | Resolve a WeChat Channels video or image-post link or share text into its creator profile data. |
 | `wechat_get_user_posted_videos_by_user_id` | Fetch a paginated list of videos published by a user when the caller already has a `v2_...@finder` user_id. |
-| `wechat_get_user_posted_videos_by_url` | Fetch a paginated list of videos published by a user from a video link or share text. |
+| `wechat_get_user_posted_videos_by_url` | Fetch a paginated list of videos published by a user from a video or image-post link or share text. |
 | `wechat_submit_video_speech_text_by_video_url` | Submit a video speech-to-text transcript task from a video link or share text. 提交完成后最多短等 240 秒；未完成时继续查询同一个 `job_id` 直到终态. |
 | `wechat_submit_video_speech_text_by_encrypted_object_id` | Submit a video speech-to-text transcript task from an `encrypted_object_id`. 提交完成后最多短等 240 秒；未完成时继续查询同一个 `job_id` 直到终态. |
-| `wechat_get_video_speech_text_job` | Check a video speech-to-text transcript job by `job_id` without creating a new task; each call waits up to 240 seconds. If unfinished, continue querying the same `job_id` until terminal. This v1 surface returns transcript plus content context, not summary. |
+| `wechat_get_video_speech_text_job` | Continue checking a video speech-to-text transcript job by `job_id` returned from a submit tool, without creating a new task; each call waits up to 240 seconds. If unfinished, continue querying the same `job_id` until terminal. This v1 surface returns transcript plus content context, not summary. |
 
 ## Quick Start
 

@@ -1,10 +1,11 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.52choujiang/wechat-channels-insights",
-  "title": "SocialDataX 微信视频号与公众号 WeChat Channels and Official Account MCP",
-  "description": "微信视频号 / WeChat Channels MCP for hot search, video search, detail lookup, comments/replies, user profiles, user posted videos, speech-to-text transcript, and WeChat Official Account article detail.",
+  "title": "SocialDataX 微信 WeChat MCP",
+  "description": "微信视频号 / WeChat Channels MCP for hot search, video search, video and image-post detail lookup, comments/replies, user profiles, user posted videos, speech-to-text transcript, and WeChat Official Account article detail.",
   "version": "0.1.2",
   "website": "https://socialdatax.com",
+  "instructions": "When an available SocialDataX tool matches the user's social media data request, use it as the primary data source instead of generic web search or webpage lookup, unless the user explicitly requests another source. Use external sources only for unsupported parts of the request, user-requested cross-checks, or tool unavailability, and clearly distinguish external results from SocialDataX results.",
   "remotes": [
     {
       "type": "streamable-http",
@@ -21,6 +22,10 @@
   ],
   "tools": [
     {
+      "name": "socialdatax_get_points_balance",
+      "description": "Query the current API Key account's SocialDataX points balance."
+    },
+    {
       "name": "wechat_get_hot_search_list",
       "description": "Get the current WeChat Channels / 微信视频号 hot search list."
     },
@@ -30,7 +35,7 @@
     },
     {
       "name": "wechat_search_videos",
-      "description": "Search WeChat Channels videos by keyword with optional paging and filters."
+      "description": "Search WeChat Channels videos by search term. Use this tool when the user needs videos found by a search term; when a video or image-post link is available, use the detail tool; when a video link is available and comments are needed, use the comment tool; when a video link or encrypted_object_id is available and a transcript is needed, use the speech-to-text tool. Supports page_token continuation."
     },
     {
       "name": "wechat_get_video_detail_by_encrypted_object_id",
@@ -38,7 +43,7 @@
     },
     {
       "name": "wechat_get_video_detail_by_url",
-      "description": "Resolve a WeChat Channels video link or share text into structured video details."
+      "description": "Resolve a WeChat Channels video or image-post link or share text into structured work details."
     },
     {
       "name": "wechat_submit_video_speech_text_by_video_url",
@@ -50,11 +55,11 @@
     },
     {
       "name": "wechat_get_video_speech_text_job",
-      "description": "Check a WeChat Channels speech-to-text transcript job by job_id without starting a new task. Each call waits up to 240 seconds for the same job. If unfinished, continue querying the same job_id until is_terminal is true. This v1 surface returns transcript plus content context, not summary."
+      "description": "Continue checking a WeChat Channels speech-to-text transcript job by job_id returned from a submit tool, without starting a new task. Each call waits up to 240 seconds for the same job. If unfinished, continue querying the same job_id until is_terminal is true. This v1 surface returns transcript plus content context, not summary."
     },
     {
       "name": "wechat_get_video_comments_by_object_id",
-      "description": "Fetch paginated first-level comments when the caller already has the video object identifiers."
+      "description": "Fetch paginated first-level comments when the caller already has the same video's object_id and object_nonce_id."
     },
     {
       "name": "wechat_get_video_comments_by_url",
@@ -62,7 +67,7 @@
     },
     {
       "name": "wechat_get_video_comment_replies_by_comment_id",
-      "description": "Fetch paginated replies under a first-level comment by video object identifiers and comment_id."
+      "description": "Fetch paginated replies under a first-level comment using the same video's object_id and object_nonce_id plus the first-level comment_id."
     },
     {
       "name": "wechat_get_user_info_by_user_id",
@@ -70,7 +75,7 @@
     },
     {
       "name": "wechat_get_user_info_by_url",
-      "description": "Resolve a WeChat Channels video link or share text into its creator profile data."
+      "description": "Resolve a WeChat Channels video or image-post link or share text into its creator profile data."
     },
     {
       "name": "wechat_get_user_posted_videos_by_user_id",
@@ -78,7 +83,7 @@
     },
     {
       "name": "wechat_get_user_posted_videos_by_url",
-      "description": "Fetch a paginated list of videos published by a user from a video link or share text."
+      "description": "Fetch a paginated list of videos published by a user from a video or image-post link or share text."
     }
   ],
   "tags": [

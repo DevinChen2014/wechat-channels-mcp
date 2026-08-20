@@ -7,7 +7,7 @@ Use this checklist before syncing this listing to the public WeChat Channels MCP
 - Primary repository name: `wechat-channels-mcp`
 - Fallback repository name if unavailable: `wechat-channels-socialdatax-mcp`
 - Repository URL after creation: `https://github.com/DevinChen2014/wechat-channels-mcp`
-- Repository description: `微信视频号 MCP / WeChat Channels MCP by SocialDataX for hot search, video search, details, comments, comment replies, user profiles, user videos, and transcript, plus WeChat Official Account article details.`
+- Repository description: `微信视频号 MCP / WeChat Channels MCP by SocialDataX for hot search, video search, video and image-post details, comments, comment replies, user profiles, user videos, and transcript, plus WeChat Official Account article details.`
 - Suggested repository topics: `mcp`, `mcp-server`, `wechat`, `wechat-channels`, `wechat-channels-mcp`, `wechat-official-account`, `socialdatax`, `social-insights`, `marketing-research`, `comment-analysis`, `creator-analytics`
 - Root README title: `微信视频号与公众号 MCP | WeChat Channels and Official Account MCP`
 - Product: `SocialDataX` / `社媒数据助手`
@@ -48,7 +48,8 @@ Use this checklist before syncing this listing to the public WeChat Channels MCP
 
 - Hosted streamable HTTP clients can connect directly to `https://mcp.socialdatax.com/wechat/mcp` with `Authorization: Bearer <SOCIALDATAX_API_KEY>`.
 - With a valid key, hosted MCP `initialize` succeeds.
-- With a valid key, hosted MCP `tools/list` returns the current 15 public tools.
+- With a valid key, hosted MCP `tools/list` returns the current 16 public tools.
+- `socialdatax_get_points_balance` is present in `tools/list`.
 - `wechat_get_hot_search_list` is present in `tools/list`; if it is missing, deploy the latest service before publishing.
 - `wechat_get_user_info_by_url` is present in `tools/list`; if it is missing, deploy the latest service before publishing.
 - `wechat_get_mp_article_detail_by_url` is present in `tools/list`; if it is missing, deploy the latest service before publishing.
