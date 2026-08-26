@@ -7,7 +7,7 @@ Use this checklist before syncing this listing to the public WeChat Channels MCP
 - Primary repository name: `wechat-channels-mcp`
 - Fallback repository name if unavailable: `wechat-channels-socialdatax-mcp`
 - Repository URL after creation: `https://github.com/DevinChen2014/wechat-channels-mcp`
-- Repository description: `微信视频号 MCP / WeChat Channels MCP by SocialDataX for hot search, video search, video and image-post details, comments, comment replies, user profiles, user videos, and transcript, plus WeChat Official Account article details.`
+- Repository description: `微信视频号 MCP / WeChat Channels MCP by SocialDataX for hot search, video search, video and image-post details, comments, comment replies, user profiles, creator videos and image posts, and transcript, plus WeChat Official Account article details.`
 - Suggested repository topics: `mcp`, `mcp-server`, `wechat`, `wechat-channels`, `wechat-channels-mcp`, `wechat-official-account`, `socialdatax`, `social-insights`, `marketing-research`, `comment-analysis`, `creator-analytics`
 - Root README title: `微信视频号与公众号 MCP | WeChat Channels and Official Account MCP`
 - Product: `SocialDataX` / `社媒数据助手`

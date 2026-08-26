@@ -61,8 +61,8 @@ Supported workflows include:
 - Fetch paginated replies under a first-level comment.
 - Read user profile data when the caller already has a `v2_...@finder` user_id.
 - Resolve a video or image-post link or share text into its creator profile data.
-- Fetch user posted video lists from a video or image-post link/share text or a `v2_...@finder` user_id.
-- Submit a video speech-to-text transcript task; submit tools 提交完成后最多短等 240 秒, and unfinished jobs should continue polling the same `job_id` until terminal.
+- Fetch user-posted work lists, including videos and image posts, from a work link/share text or a `v2_...@finder` user_id.
+- Submit a video speech-to-text transcript task; the submit call may wait up to 240 seconds, and unfinished jobs should continue polling the same `job_id` until terminal.
 
 ## Tools
 
@@ -79,11 +79,11 @@ Supported workflows include:
 | `wechat_get_video_comment_replies_by_comment_id` | Fetch paginated replies under a first-level comment using the same video's `object_id` and `object_nonce_id` plus the first-level `comment_id`. |
 | `wechat_get_user_info_by_user_id` | Fetch user profile data when the caller already has a `v2_...@finder` user_id. |
 | `wechat_get_user_info_by_url` | Resolve a WeChat Channels video or image-post link or share text into its creator profile data. |
-| `wechat_get_user_posted_videos_by_user_id` | Fetch a paginated list of videos published by a user when the caller already has a `v2_...@finder` user_id. |
-| `wechat_get_user_posted_videos_by_url` | Fetch a paginated list of videos published by a user from a video or image-post link or share text. |
-| `wechat_submit_video_speech_text_by_video_url` | Submit a video speech-to-text transcript task from a video link or share text. 提交完成后最多短等 240 秒；未完成时继续查询同一个 `job_id` 直到终态. |
-| `wechat_submit_video_speech_text_by_encrypted_object_id` | Submit a video speech-to-text transcript task from an `encrypted_object_id`. 提交完成后最多短等 240 秒；未完成时继续查询同一个 `job_id` 直到终态. |
-| `wechat_get_video_speech_text_job` | Continue checking a video speech-to-text transcript job by `job_id` returned from a submit tool, without creating a new task; each call waits up to 240 seconds. If unfinished, continue querying the same `job_id` until terminal. This v1 surface returns transcript plus content context, not summary. |
+| `wechat_get_user_posted_videos_by_user_id` | Fetch a paginated list of videos and image posts published by a user when the caller already has a `v2_...@finder` user_id. |
+| `wechat_get_user_posted_videos_by_url` | Fetch a paginated list of videos and image posts published by a user from a work link or share text. |
+| `wechat_submit_video_speech_text_by_video_url` | Submit a video speech-to-text transcript task from a video link or share text. The submit call may wait up to 240 seconds; if unfinished, continue polling the same `job_id` until terminal. |
+| `wechat_submit_video_speech_text_by_encrypted_object_id` | Submit a video speech-to-text transcript task from an `encrypted_object_id`. The submit call may wait up to 240 seconds; if unfinished, continue polling the same `job_id` until terminal. |
+| `wechat_get_video_speech_text_job` | Continue checking a video speech-to-text transcript job using a valid `job_id` supplied by the user, or a `job_id` returned by a submit tool, without creating a new task; each call waits up to 240 seconds. If unfinished, continue querying the same `job_id` until terminal. This v1 surface returns transcript plus content context, not summary. |
 
 ## Quick Start
 
