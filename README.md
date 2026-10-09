@@ -39,7 +39,8 @@ Common search phrases for this MCP service:
 - Website and API Key access: <https://socialdatax.com/ai?from=github>
 - Registry name: `com.52choujiang/wechat-channels-insights`
 - Future registry name: `com.socialdatax/wechat-channels-insights`
-- Current public capability version: `0.1.2`
+- Current public capability version: `0.1.4`
+- Hosted production and official MCP Registry both verified at `0.1.4`, with 24 tools, on `2026-10-09`.
 
 ## Platform MCP
 
@@ -51,14 +52,16 @@ This MCP service is designed for social media content intelligence workflows. It
 
 Supported workflows include:
 
-- Query the current API Key account's SocialDataX points balance.
+- Query the current API Key account's SocialDataX points balance / 积分余额、剩余积分或点数.
 - Read the WeChat Channels / 微信视频号 hot search list.
-- Fetch WeChat Official Account / 微信公众号 article details and body text from an article link or share text.
+- Fetch WeChat Official Account / 微信公众号 article details, body text, account information, and engagement statistics.
+- Read WeChat Official Account article reading, likes, shares, collections, comments, and "wow" counts.
+- Read paginated WeChat Official Account article comments and replies under a first-level comment.
 - Search WeChat Channels videos by keyword with optional paging and filters.
 - Resolve a WeChat Channels video or image-post link or share text into structured work details.
 - Read video details when the caller already has an `encrypted_object_id`.
-- Fetch paginated first-level comments for comment analysis.
-- Fetch paginated replies under a first-level comment.
+- Fetch paginated first-level comments on a WeChat Channels video for comment analysis.
+- Fetch paginated replies under a first-level WeChat Channels video comment.
 - Read user profile data when the caller already has a `v2_...@finder` user_id.
 - Resolve a video or image-post link or share text into its creator profile data.
 - Fetch user-posted work lists, including videos and image posts, from a work link/share text or a `v2_...@finder` user_id.
@@ -68,11 +71,19 @@ Supported workflows include:
 
 | Tool | Public purpose |
 | --- | --- |
-| `socialdatax_get_points_balance` | Query the current API Key account's SocialDataX points balance. |
+| `socialdatax_get_points_balance` | Query the current API Key account's SocialDataX points balance / 积分余额、剩余积分或点数. |
 | `wechat_get_hot_search_list` | Get the current WeChat Channels / 微信视频号 hot search list. |
+| `wechat_search_mp_articles` | Search WeChat Official Account / 微信公众号 articles by keyword, with sort_type, publish_time_range, and pagination. |
 | `wechat_get_mp_article_detail_by_url` | Fetch WeChat Official Account / 微信公众号 article detail and body text from an article link or share text. |
+| `wechat_get_mp_account_info_by_account_id` | Fetch WeChat Official Account / 微信公众号 account information from an account ID returned by article detail. |
+| `wechat_get_mp_account_articles_by_account_id` | Fetch paginated WeChat Official Account / 微信公众号 articles from an account ID returned by article detail. |
+| `wechat_get_mp_article_stats_by_url` | Fetch WeChat Official Account / 微信公众号 article reading, likes, shares, collections, comments, and "wow" counts from an article link or share text. |
+| `wechat_get_mp_article_comments_by_url` | Fetch paginated WeChat Official Account / 微信公众号 article comments from an article link or share text. |
+| `wechat_get_mp_article_comment_replies_by_url` | Fetch replies under a selected first-level comment, or let the service select one, from an article link or share text. |
+| `wechat_search_finder_user` | Search WeChat Channels users by keyword or Channels ID; use the returned `user_id` to read user profiles and published posts. Supports `page_token` continuation. |
 | `wechat_search_videos` | Search WeChat Channels videos by search term. Use this tool when the user needs videos found by a search term; when a video or image-post link is available, use the detail tool; when a video link is available and comments are needed, use the comment tool; when a video link or `encrypted_object_id` is available and a transcript is needed, use the speech-to-text tool. Supports `page_token` continuation. |
 | `wechat_get_video_detail_by_encrypted_object_id` | Fetch structured video details when the caller already has an `encrypted_object_id`. |
+| `wechat_get_video_share_url_by_object_id` | Generate a WeChat Channels work share URL from a known numeric `object_id`. |
 | `wechat_get_video_detail_by_url` | Resolve a WeChat Channels video or image-post link or share text into structured work details. |
 | `wechat_get_video_comments_by_object_id` | Fetch paginated first-level comments when the caller already has the same video's `object_id` and `object_nonce_id`. |
 | `wechat_get_video_comments_by_url` | Fetch paginated first-level comments directly from a WeChat Channels video link or share text. |

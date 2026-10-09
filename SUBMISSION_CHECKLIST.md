@@ -7,7 +7,7 @@ Use this checklist before syncing this listing to the public WeChat Channels MCP
 - Primary repository name: `wechat-channels-mcp`
 - Fallback repository name if unavailable: `wechat-channels-socialdatax-mcp`
 - Repository URL after creation: `https://github.com/DevinChen2014/wechat-channels-mcp`
-- Repository description: `微信视频号 MCP / WeChat Channels MCP by SocialDataX for hot search, video search, video and image-post details, comments, comment replies, user profiles, creator videos and image posts, and transcript, plus WeChat Official Account article details.`
+- Repository description: `微信视频号 MCP / WeChat Channels MCP by SocialDataX for hot search, video search, video and image-post details, comments, comment replies, user profiles, creator videos and image posts, and transcript, plus WeChat Official Account article details and engagement statistics.`
 - Suggested repository topics: `mcp`, `mcp-server`, `wechat`, `wechat-channels`, `wechat-channels-mcp`, `wechat-official-account`, `socialdatax`, `social-insights`, `marketing-research`, `comment-analysis`, `creator-analytics`
 - Root README title: `微信视频号与公众号 MCP | WeChat Channels and Official Account MCP`
 - Product: `SocialDataX` / `社媒数据助手`
@@ -47,12 +47,20 @@ Use this checklist before syncing this listing to the public WeChat Channels MCP
 ## Directory Checks
 
 - Hosted streamable HTTP clients can connect directly to `https://mcp.socialdatax.com/wechat/mcp` with `Authorization: Bearer <SOCIALDATAX_API_KEY>`.
+- Current public capability version: `0.1.4`
+- Hosted production and official MCP Registry both verified at `0.1.4`, with 24 tools, on `2026-10-09`.
 - With a valid key, hosted MCP `initialize` succeeds.
-- With a valid key, hosted MCP `tools/list` returns the current 16 public tools.
+- Hosted MCP `tools/list` and the local server card both contain 24 tools, including `wechat_search_finder_user`; verified on `2026-10-09`.
 - `socialdatax_get_points_balance` is present in `tools/list`.
 - `wechat_get_hot_search_list` is present in `tools/list`; if it is missing, deploy the latest service before publishing.
 - `wechat_get_user_info_by_url` is present in `tools/list`; if it is missing, deploy the latest service before publishing.
+- `wechat_search_mp_articles` is present in `tools/list`; if it is missing, deploy the latest service before publishing.
 - `wechat_get_mp_article_detail_by_url` is present in `tools/list`; if it is missing, deploy the latest service before publishing.
+- `wechat_get_mp_account_info_by_account_id` is present in `tools/list`; if it is missing, deploy the latest service before publishing.
+- `wechat_get_mp_account_articles_by_account_id` is present in `tools/list`; if it is missing, deploy the latest service before publishing.
+- `wechat_get_mp_article_stats_by_url` is present in `tools/list`; if it is missing, deploy the latest service before publishing.
+- `wechat_get_mp_article_comments_by_url` and `wechat_get_mp_article_comment_replies_by_url` are present in `tools/list`; if either is missing, deploy the latest service before publishing.
+- `wechat_get_video_share_url_by_object_id` is present in `tools/list`; if it is missing, deploy the latest service before publishing.
 - `wechat_submit_video_speech_text_by_video_url`, `wechat_submit_video_speech_text_by_encrypted_object_id`, and `wechat_get_video_speech_text_job` are present in `tools/list`; if any are missing, deploy the latest service before publishing.
 - `examples/codex_config.toml` uses remote HTTP URL and `bearer_token_env_var`, not `mcp-remote`.
 - `examples/cursor_mcp.json` uses remote HTTP URL and `headers` with `${env:SOCIALDATAX_API_KEY}`, not `mcp-remote`.
