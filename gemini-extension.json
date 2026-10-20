@@ -1,0 +1,22 @@
+{
+  "name": "socialdatax-wechat",
+  "version": "1.0.0",
+  "description": "SocialDataX: WeChat Channels search、视频图文详情、评论/回复、users/posts、transcript、Official Account 文章搜索/详情/账号资料/账号文章/统计/评论",
+  "mcpServers": {
+    "socialdatax-wechat": {
+      "httpUrl": "https://mcp.socialdatax.com/wechat/mcp",
+      "headers": {
+        "Authorization": "Bearer ${SOCIALDATAX_API_KEY}"
+      },
+      "timeout": 300000
+    }
+  },
+  "settings": [
+    {
+      "name": "SocialDataX API Key",
+      "description": "Get your own API Key at https://socialdatax.com/ai?from=gemini-cli. Business calls consume SocialDataX credits.",
+      "envVar": "SOCIALDATAX_API_KEY",
+      "sensitive": true
+    }
+  ]
+}
